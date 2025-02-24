@@ -120,6 +120,8 @@ You can send a file for prediction by opening the following URL in your browser:
 
 [https://productivo-872939375636.us-central1.run.app/predict](https://productivo-872939375636.us-central1.run.app/predict)
 
+Use 'blind_test_data.csv' in data directory to test the API.
+
 You can also download predictions by clicking on the "Download CSV" button.
 
 Or using **Postman**:  
