@@ -16,10 +16,7 @@ app.add_middleware(
 )
 static_path = os.path.join(os.path.dirname(__file__), "../static")
 app.mount("/static", StaticFiles(directory=static_path), name="static")
-# Montar archivos estáticos
-#app.mount("/static", StaticFiles(directory="../static"), name="static")
 
-# Registrar los routers
 app.include_router(predict.router)
 app.include_router(home.router)
 app.include_router(health.router)
@@ -29,7 +26,6 @@ app.include_router(health.router)
 async def root():
     return {"message": "Sharon Camacho - Data Science ML Modeling Challenge"}
 
-# Iniciar la app (solo si se ejecuta directamente)
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8080)

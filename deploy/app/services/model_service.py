@@ -6,12 +6,12 @@ class ModelService:
     def __init__(self):
         try:
             self.model = joblib.load(MODEL_PATH)
-            print("Modelo cargado correctamente.")
+            print("Model loaded successfully.")
         except Exception as e:
-            print(f"Error cargando el modelo: {e}")
+            print(f"Error loading model: {e}")
             self.model = None
 
     def predict(self, df: pd.DataFrame):
         if self.model is None:
-            raise ValueError("Modelo no encontrado")
+            raise ValueError("Model not found")
         return self.model.predict(df)
