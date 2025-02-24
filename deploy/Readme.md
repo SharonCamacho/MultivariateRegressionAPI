@@ -63,15 +63,15 @@ Navigate to the `deploy/` directory and execute:
 python -m app.main
 ```
 The API will be available at:
-```
-http://localhost:8080
-```
+
+[http://localhost:8080](http://localhost:8080)
+
 
 ### 4. Make Predictions
 - Open the following URL in your browser:
-```
-http://localhost:8080/predict
-```
+
+[http://localhost:8080/predict](http://localhost:8080/predict)
+
 - Or use **Postman**:
   1. Select `POST`.
   2. Enter the URL: `http://localhost:8080/predict/`
@@ -80,9 +80,9 @@ http://localhost:8080/predict
 
 ### 5. Check API Health
 Verify service availability using:
-```
-http://localhost:8080/health
-```
+
+[http://localhost:8080/health](http://localhost:8080/health)
+
 Or via **Postman**:
 ```bash
 GET http://localhost:8080/health

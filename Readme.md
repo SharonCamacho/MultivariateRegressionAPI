@@ -117,9 +117,9 @@ The API is deployed on **Cloud Run**, and you can access it using **Postman** or
 
 ### - Make a prediction  
 You can send a file for prediction by opening the following URL in your browser:
-```
-https://productivo-872939375636.us-central1.run.app/predict
-```
+
+[https://productivo-872939375636.us-central1.run.app/predict](https://productivo-872939375636.us-central1.run.app/predict)
+
 You can also download predictions by clicking on the "Download CSV" button.
 
 Or using **Postman**:  
@@ -134,9 +134,9 @@ Or using **Postman**:
 
 ### - Check service health  
 You can check the service health by opening the following URL in your browser:  
-```
-https://productivo-872939375636.us-central1.run.app/health
-```
+
+[https://productivo-872939375636.us-central1.run.app/health](https://productivo-872939375636.us-central1.run.app/health)
+
 Or using **Postman**:  
 ```bash
 GET https://productivo-872939375636.us-central1.run.app/health
@@ -159,14 +159,14 @@ python -m app.main
 ```
 
 The API will be available at:
-```
-http://localhost:8080
-```
+
+[http://localhost:8080](http://localhost:8080)
+
 
 - Make a prediction  
-```
-http://localhost:8080/predict
-```
+
+[http://localhost:8080/predict](http://localhost:8080/predict)
+
 
 Or using **Postman** as we shown before.
 
