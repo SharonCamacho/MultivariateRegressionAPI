@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results-container {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ML Modeling Challenge</h1>
+        <h6>By Sharon Camacho</h6>
+        <input type="file" id="fileInput" accept=".csv">
+        <div class="button-group">
+            <button onclick="uploadFile()">Predict</button>
+            <button onclick="downloadCSV()">Download CSV</button>
+        </div>
+        <h2>Results:</h2>
+        <div class="results-container">
+            <pre id="results"></pre>
+        </div>
+    </div>
+
+    <script>
+        let lastData = null;
+
+        async function uploadFile() {
+            const fileInput = document.getElementById("fileInput");
+            if (fileInput.files.length === 0) {
+                alert("Please select a CSV file.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            try {
+                const response = await fetch("/predict", {
+                    method: "POST",
+                    body: formData
+                });
+                const data = await response.json();
+                lastData = data;
+                document.getElementById("results").textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                console.error("Error uploading the file:", error);
+            }
+        }
+
+        function downloadCSV() {
+            if (!lastData) {
+                alert("No data to download.");
+                return;
+            }
+            
+            const csvContent = "data:text/csv;charset=utf-8," +
+                Object.keys(lastData[0]).join(",") + "\n" +
+                lastData.map(row => Object.values(row).join(",")).join("\n");
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "predictions.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
